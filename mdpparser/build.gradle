@@ -38,11 +38,40 @@ dependencies {
     final RXJAVA_VERSION = '2.0.1'
 
     final ESPRESSO_VERSION = '2.2.1'
+    final MOCKITO_VERSION = '2.6.2'
+    final RUNNER_VERSION = '0.4'
 
     compile "com.google.android.exoplayer:exoplayer:$exoplayer_version"
     compile "com.google.android.exoplayer:extension-okhttp:$exoplayer_version"
 
     def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    def jUnit = "junit:junit:4.12"
+    def mockito = "org.mockito:mockito-core:$MOCKITO_VERSION"
+    def mockitoKotlin = "com.nhaarman:mockito-kotlin:1.1.0"
+
+    // Unit tests dependencies
+    testCompile jUnit
+    testCompile mockito
+    testCompile(mockitoKotlin) {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
+
+    // Instrumentation test dependencies
+    androidTestCompile jUnit
+    androidTestCompile mockito
+    androidTestCompile "org.mockito:mockito-android:$MOCKITO_VERSION"
+    androidTestCompile(mockitoKotlin) {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'
+    }
+    androidTestCompile "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    androidTestCompile "com.android.support.test:runner:$RUNNER_VERSION"
+    androidTestCompile "com.android.support.test:rules:$RUNNER_VERSION"
 
     // App Dependencies
     compile fileTree(dir: 'libs', include: ['*.jar'])

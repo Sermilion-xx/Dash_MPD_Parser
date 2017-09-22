@@ -1,8 +1,8 @@
 package reddit.com.mdpparser.core.mapper
 
-/**
- * Created by Sermilion on 9/22/17.
- */
+import com.google.android.exoplayer2.source.dash.manifest.DashManifest
+
+
 interface Mapper {
-    fun map(urls: List<String>)
+    fun map(dashManifest: DashManifest): MutableMap<String, String>
 }
