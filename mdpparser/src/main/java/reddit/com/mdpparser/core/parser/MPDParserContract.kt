@@ -1,4 +1,4 @@
-package reddit.com.mdpparser.parser
+package reddit.com.mdpparser.core.parser
 
 import reddit.com.mdpparser.base.BaseMvpPresenter
 import reddit.com.mdpparser.base.MvpView

@@ -3,8 +3,9 @@ package reddit.com.mdpparser.data
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import reddit.com.mdpparser.data.model.MPD
+import okhttp3.ResponseBody
 import reddit.com.mdpparser.data.remote.MDPParserService
+import retrofit2.Response
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class DataManager @Inject constructor(private val mdpParserService: MDPParserService) {
 
-    fun parse(url: String): Observable<MPD> {
+    fun parse(url: String): Observable<Response<ResponseBody>> {
         return mdpParserService.getMPD(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -34,10 +34,13 @@ dependencies {
     final SUPPORT_LIBRARY_VERSION = '26.+'
     final DAGGER_VERSION = '2.8'
     final RETROFIT_VERSION = '2.2.0'
-    final MOCKITO_VERSION = '2.6.2'
+    final exoplayer_version = 'r2.4.1'
     final RXJAVA_VERSION = '2.0.1'
 
     final ESPRESSO_VERSION = '2.2.1'
+
+    compile "com.google.android.exoplayer:exoplayer:$exoplayer_version"
+    compile "com.google.android.exoplayer:extension-okhttp:$exoplayer_version"
 
     def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 
