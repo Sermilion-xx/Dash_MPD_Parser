@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Presenter for parsing MPD XML
  */
-class MDPParserPresenter @Inject constructor(private val dataManager: DataManager): MDPParserContract.Presenter<MPD>() {
+class MPDParserPresenter @Inject constructor(private val dataManager: DataManager): MPDParserContract.Presenter<MPD>() {
 
     private var disposables: Disposable? = null
 

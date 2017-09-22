@@ -6,7 +6,7 @@ import reddit.com.mdpparser.base.MvpView
 /**
  * Contract to be implemented by presenter and view that is going to be used to parse MPD MXL file
  */
-object MDPParserContract {
+object MPDParserContract {
 
     interface View<in T>: MvpView {
         fun onMpdReady(value: T)
