@@ -1,25 +1,18 @@
 package reddit.com.mdpparser.core.mapper
 
 import android.support.annotation.NonNull
-import com.google.android.exoplayer2.source.dash.manifest.DashManifest
+import reddit.com.mdpparser.data.model.DashManifest
+import javax.inject.Inject
 
 /**
- * Mapper class to map {@code ExoPlayer DashManifest}'s urls into a map of local urls
+ * MPDMapper class to map {@code ExoPlayer DashManifest}'s urls into a map of local urls
  */
-class LocalUrlMapper private constructor() : Mapper {
+class LocalUrlMPDMapper @Inject constructor() : MPDMapper {
 
     companion object {
 
         val localhost = "http://localhost:9999/"
         val placeholder = "video"
-
-        fun getInstance() = SingletonHelper.INSTANCE
-
-        class SingletonHelper {
-            companion object {
-                var INSTANCE = LocalUrlMapper()
-            }
-        }
     }
 
     override fun map(dashManifest: DashManifest): MutableMap<String, String> {

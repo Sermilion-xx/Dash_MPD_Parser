@@ -2,20 +2,20 @@ package reddit.com
 
 import org.junit.Before
 import org.junit.Test
-import reddit.com.mdpparser.core.mapper.LocalUrlMapper
+import reddit.com.mdpparser.core.mapper.LocalUrlMPDMapper
 
-class LocalUrlMapperTest {
+class LocalUrlMPDMapperTest {
 
     private val remoteUrls = mutableListOf<String>()
 
     @Before
     fun before() {
-        localUrlMapper = LocalUrlMapper.getInstance()
+        localUrlMapper = LocalUrlMPDMapper()
         remoteUrls.add("https://v.redd.it/cdl33f9jwbkz/DASH_2_4_M")
         remoteUrls.add("https://v.redd.it/cdl33f9jwbkz/DASH_1_4_M=\$param1\$-\$param2\$")
     }
 
-    private lateinit var localUrlMapper: LocalUrlMapper
+    private lateinit var localUrlMapper: LocalUrlMPDMapper
 
     @Test
     fun mappedLocalUrlsCorrect() {
@@ -24,6 +24,6 @@ class LocalUrlMapperTest {
 
     @Test
     fun mappedLocalUrlsWithParamsCorrect() {
-        assert(localUrlMapper.createLocalUrl(remoteUrls[2], "mp4", "1") == "http://localhost:9999/video1=-\$param1\$-\$param2\$.mp4")
+        assert(localUrlMapper.createLocalUrl(remoteUrls[1], "mp4", "1") == "http://localhost:9999/video1=-\$param1\$-\$param2\$.mp4")
     }
 }

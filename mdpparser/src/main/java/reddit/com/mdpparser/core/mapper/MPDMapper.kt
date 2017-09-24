@@ -1,8 +1,8 @@
 package reddit.com.mdpparser.core.mapper
 
-import com.google.android.exoplayer2.source.dash.manifest.DashManifest
+import reddit.com.mdpparser.data.model.DashManifest
 
 
-interface Mapper {
+interface MPDMapper {
     fun map(dashManifest: DashManifest): MutableMap<String, String>
 }

@@ -14,7 +14,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class DataManager @Inject constructor(private val mdpParserService: MDPParserService) {
+internal class DataManager @Inject constructor(private val mdpParserService: MDPParserService) {
 
     fun parse(url: String): Observable<Response<ResponseBody>> {
         return mdpParserService.getMPD(url)

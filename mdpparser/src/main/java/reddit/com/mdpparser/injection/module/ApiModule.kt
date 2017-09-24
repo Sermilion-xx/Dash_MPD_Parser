@@ -16,7 +16,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 import javax.inject.Singleton
 
 @Module
-class ApiModule {
+internal class ApiModule {
 
     companion object {
         val BASE_URL = "https://v.redd.it/"

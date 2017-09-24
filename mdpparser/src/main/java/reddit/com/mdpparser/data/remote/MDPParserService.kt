@@ -9,7 +9,7 @@ import retrofit2.http.Path
 /**
  * Collection of requests for Retrofit
  */
-interface MDPParserService {
+internal interface MDPParserService {
 
     @GET("{param}.mpd")
     fun getMPD(@Path("param")url: String): Observable<Response<ResponseBody>>
