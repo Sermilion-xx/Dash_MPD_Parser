@@ -15,12 +15,13 @@ class SimpleMPDLocalizer
 ): MPDLocalizer {
 
     init {
-        DaggerWrapper.getComponent().inject(this)
+//        DaggerWrapper.getComponent().inject(this)
     }
 
     override fun localize(uri: Uri, inputStream: InputStream) {
         val manifest : DashManifest = parser.parseManifest(uri, inputStream)
         val map = mapper.map(manifest)
+        println()
     }
 
 }

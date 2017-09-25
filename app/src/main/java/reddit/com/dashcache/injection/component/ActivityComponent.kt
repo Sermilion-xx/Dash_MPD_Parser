@@ -3,7 +3,7 @@ package reddit.com.dashcache.injection.component
 import dagger.Subcomponent
 import reddit.com.dashcache.injection.PerActivity
 import reddit.com.dashcache.injection.module.ActivityModule
-import reddit.com.dashcache.MainActivity
+import reddit.com.dashcache.client.MainActivity
 
 /**
  * This component inject dependencies to all Activities across the application

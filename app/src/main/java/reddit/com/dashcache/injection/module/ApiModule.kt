@@ -15,6 +15,10 @@ import javax.inject.Singleton
 @Module
 class ApiModule {
 
+    companion object {
+        val BASE_URL = "https://v.redd.it/"
+    }
+
     @Provides
     @Singleton
     fun provideGson(): Gson {
@@ -44,7 +48,7 @@ class ApiModule {
     fun provideOneAccountService(okHttpClient: OkHttpClient, gson: Gson): RetrofitService {
         return Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl("http://52.164.247.48:8080/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

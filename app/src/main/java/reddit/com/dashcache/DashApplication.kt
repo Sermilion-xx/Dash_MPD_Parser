@@ -5,10 +5,8 @@ import android.support.annotation.VisibleForTesting
 import net.oneread.oneread.injection.module.ApplicationModule
 import reddit.com.dashcache.injection.component.ApplicationComponent
 import reddit.com.dashcache.injection.component.DaggerApplicationComponent
+import reddit.com.mdpparser.injection.DaggerWrapper
 
-/**
- * Created by sermilion on 9/23/17.
- */
 open class DashApplication: Application() {
 
     lateinit var applicationComponent: ApplicationComponent
