@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import reddit.com.dashcache.injection.component.ActivityComponent
 import reddit.com.dashcache.injection.component.ConfigPersistentComponent
+import reddit.com.dashcache.injection.component.DaggerConfigPersistentComponent
 import reddit.com.dashcache.injection.module.ActivityModule
 import reddit.com.mdpparser.core.external.SimpleMPDLocalizer
 import java.util.concurrent.atomic.AtomicLong
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var activityComponent: ActivityComponent
         get
 
-    @Inject lateinit var simpleMPDLocalizer: SimpleMPDLocalizer
+//    @Inject lateinit var simpleMPDLocalizer: SimpleMPDLocalizer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -4,6 +4,7 @@ import android.app.Application
 import android.support.annotation.VisibleForTesting
 import net.oneread.oneread.injection.module.ApplicationModule
 import reddit.com.dashcache.injection.component.ApplicationComponent
+import reddit.com.dashcache.injection.component.DaggerApplicationComponent
 
 /**
  * Created by sermilion on 9/23/17.

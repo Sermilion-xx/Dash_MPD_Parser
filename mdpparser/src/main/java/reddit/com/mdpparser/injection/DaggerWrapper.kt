@@ -6,7 +6,7 @@ import reddit.com.mdpparser.injection.component.LibraryComponent
 /**
  * Class for creating instance of dependency injection component
  */
-internal class DaggerWrapper private constructor(){
+class DaggerWrapper private constructor(){
 
     companion object {
         fun getComponent(): LibraryComponent = SingletonHelper.INSTANCE
@@ -19,5 +19,4 @@ internal class DaggerWrapper private constructor(){
             }
         }
     }
-
 }

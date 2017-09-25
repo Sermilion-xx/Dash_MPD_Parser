@@ -8,16 +8,17 @@ import net.oneread.oneread.injection.module.ApplicationModule
 import reddit.com.dashcache.data.DataManager
 import reddit.com.dashcache.data.remote.RetrofitService
 import reddit.com.dashcache.injection.ApplicationContext
+import reddit.com.dashcache.injection.module.DataModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(ApplicationModule::class))
+@Component(modules = arrayOf(ApplicationModule::class, DataModule::class))
 interface ApplicationComponent {
 
-//exposing dependencies from ApplicationComponent to components that depend on it
-    @ApplicationContext
-    fun context(): Context
+    //exposing dependencies from ApplicationComponent to components that depend on it
+    @ApplicationContext fun context(): Context
     fun application(): Application
     fun oneAccountService(): RetrofitService
     fun dataManager(): DataManager
+    fun sharedPreferences(): SharedPreferences
 }

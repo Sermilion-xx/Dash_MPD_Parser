@@ -7,7 +7,7 @@ import javax.inject.Inject
 /**
  * MPDMapper class to map {@code ExoPlayer DashManifest}'s urls into a map of local urls
  */
-class LocalUrlMPDMapper @Inject constructor() : MPDMapper {
+class LocalUrlMPDMapper: MPDMapper {
 
     companion object {
 
@@ -22,8 +22,8 @@ class LocalUrlMPDMapper @Inject constructor() : MPDMapper {
         (0 until dashManifest.periodCount)
                 .map { dashManifest.getPeriod(it).adaptationSets }
                 .forEach {
-                    it.forEach { set ->
-                        set.representations.forEach { rep ->
+                    it?.forEach { set ->
+                        set.representations?.forEach { rep ->
                             run {
                                 val formatArray = rep.format.containerMimeType.split(Regex("/"))
                                 val format = if (formatArray.size == 2) formatArray[1] else ""
