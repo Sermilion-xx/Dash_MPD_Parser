@@ -13,6 +13,7 @@ class LocalUrlMPDMapper: MPDMapper {
 
         val localhost = "http://localhost:9999/"
         val placeholder = "video"
+        val AUDIO = "audio"
     }
 
     override fun map(dashManifest: DashManifest): MutableMap<String, String> {
@@ -27,7 +28,7 @@ class LocalUrlMPDMapper: MPDMapper {
                             run {
                                 val formatArray = rep.format.containerMimeType.split(Regex("/"))
                                 val format = if (formatArray.size == 2) formatArray[1] else ""
-                                localToRemoteMap[createLocalUrl(rep.baseUrl, format, localInc++.toString())] = rep.baseUrl
+                                localToRemoteMap[createLocalUrl(rep.baseUrl, format, localInc++)] = rep.baseUrl
                             }
                         }
                     }
@@ -35,8 +36,14 @@ class LocalUrlMPDMapper: MPDMapper {
         return localToRemoteMap
     }
 
-    fun createLocalUrl(url: String, format: String, increment: String): String =
-            localhost + placeholder + increment + extractParams(url) +"." + format
+    fun createLocalUrl(url: String, format: String, increment: Int): String {
+        val urlArray = url.split(Regex("/"))
+        if (urlArray.last() == AUDIO) {
+            return localhost + AUDIO + increment
+        }
+        return localhost + placeholder + increment + extractParams(url) +"." + format
+    }
+
 
     @NonNull
     private fun extractParams(url: String): String {

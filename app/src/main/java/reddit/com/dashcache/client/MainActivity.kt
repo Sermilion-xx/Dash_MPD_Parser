@@ -9,15 +9,13 @@ import okhttp3.ResponseBody
 import reddit.com.dashcache.DashApplication
 import reddit.com.dashcache.R
 import reddit.com.dashcache.data.DataManager
-import reddit.com.dashcache.data.remote.RetrofitService
 import reddit.com.dashcache.injection.component.ActivityComponent
 import reddit.com.dashcache.injection.component.ConfigPersistentComponent
 import reddit.com.dashcache.injection.component.DaggerConfigPersistentComponent
 import reddit.com.dashcache.injection.module.ActivityModule
 import reddit.com.dashcache.injection.module.ApiModule
-import reddit.com.mdpparser.core.external.SimpleMPDLocalizer
-import reddit.com.mdpparser.core.mapper.LocalUrlMPDMapper
-import reddit.com.mdpparser.core.parser.ExoPlayerManifestParser
+import reddit.com.mdpparser.core.external.SimpleManifestLocalizer
+import reddit.com.mdpparser.injection.DaggerWrapper
 import retrofit2.Response
 import java.util.concurrent.atomic.AtomicLong
 import javax.inject.Inject
@@ -35,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var activityId: Long = 0
     private lateinit var activityComponent: ActivityComponent
 
-    private lateinit var simpleMPDLocalizer: SimpleMPDLocalizer
+    private lateinit var simpleManifestLocalizer: SimpleManifestLocalizer
 
     @Inject lateinit var dataManager: DataManager
 
@@ -44,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initDI(savedInstanceState)
         activityComponent.inject(this)
-        simpleMPDLocalizer = SimpleMPDLocalizer(ExoPlayerManifestParser(), LocalUrlMPDMapper())
+        simpleManifestLocalizer = SimpleManifestLocalizer.getSimpleExoManifestLocalizer()
         dataManager.getManifest(address).subscribe(object : Observer<Response<ResponseBody>> {
 
             override fun onComplete() {
@@ -60,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onNext(value: Response<ResponseBody>) {
-                simpleMPDLocalizer.localize(Uri.parse(ApiModule.BASE_URL + address + ".mdp"), value.body().byteStream())
+                simpleManifestLocalizer.localize(Uri.parse(ApiModule.BASE_URL + address + ".mdp"), value.body().byteStream())
             }
         })
 
