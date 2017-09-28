@@ -1,26 +1,89 @@
 package reddit.com.mdpparser.data.model
 
+import org.simpleframework.xml.Attribute
+
 
 interface DashManifest {
 
-    var periodCount: Int
+    val periodCount: Int
 
     fun getPeriod(index: Int): Period
+
+    fun getMinBufferTime(): String
+
+    fun getProfiles(): String
+
+    fun getXmlns(): String
 }
 
 interface Period {
-    var adaptationSets: List<AdaptationSet>?
+
+    val adaptationSets: List<AdaptationSet>?
+
+    fun getDuration(): String
 }
 
 interface AdaptationSet {
-    var representations: List<Representation>?
+
+    val mimeType: String
+    val representations: List<Representation>?
+    val segmentAlignment: Boolean
+    val subsegmentAlignment: Boolean
+    val subsegmentStartsWithSAP: Int
 }
 
 interface Representation {
-    var format: Format
-    var baseUrl: String
+    val id: String
+    val bandwidth: Long
+    val width: Int
+    val height: Int
+    val format: Format
+    val baseUrl: String
+    val segmentTemplate: SegmentTemplate?
+}
+
+interface SegmentList {
+    val timescale: Long
+    val duration: Long
+    val representationIndex: RepresentationIndex
+    val segmentURLs: List<SegmentURL>
+}
+
+interface SegmentURL {
+    val media: String
+}
+
+interface SegmentTemplate {
+    val media: String
+    val timescale: Long
+    val representationIndex: RepresentationIndex
+    val segmentTimeline: SegmentTimeline
+}
+
+interface S {
+    val t: Int
+    val r: Int
+    val d: Long
+}
+
+interface SegmentTimeline {
+    val s: List<S>
+}
+
+
+interface RepresentationIndex {
+    val sourceURL: String
+}
+
+interface Initialization
+
+interface SegmentBase {
+    val indexRange: String
+    val indexRangeExact: Boolean
+    val initialization: Initialization
+    val representationIndex: RepresentationIndex?
 }
 
 interface Format {
-    var containerMimeType: String
+    val containerMimeType: String
 }
