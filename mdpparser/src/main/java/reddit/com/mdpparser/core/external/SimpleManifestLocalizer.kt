@@ -4,6 +4,7 @@ import android.net.Uri
 import reddit.com.mdpparser.core.mapper.LocalUrlMPDMapper
 import reddit.com.mdpparser.core.parser.ExoPlayerManifestParser
 import reddit.com.mdpparser.data.model.DashManifest
+import reddit.com.mdpparser.data.model.ExoDashManifest
 import reddit.com.mdpparser.injection.DaggerWrapper
 import reddit.com.mdpparser.util.UtilIO.createByteArray
 import reddit.com.mdpparser.util.UtilIO.streamToString
