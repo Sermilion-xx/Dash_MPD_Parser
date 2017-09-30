@@ -19,11 +19,11 @@ class LocalUrlMPDMapperTest {
 
     @Test
     fun mappedLocalUrlsCorrect() {
-        assert(localUrlMapper.createLocalUrl(remoteUrls[0], "mp4", "1") == "http://localhost:9999/video1.mp4")
+        assert(localUrlMapper.createLocalUrl(remoteUrls[0], "mp4", 1) == "http://localhost:9999/video1.mp4")
     }
 
     @Test
     fun mappedLocalUrlsWithParamsCorrect() {
-        assert(localUrlMapper.createLocalUrl(remoteUrls[1], "mp4", "1") == "http://localhost:9999/video1=-\$param1\$-\$param2\$.mp4")
+        assert(localUrlMapper.createLocalUrl(remoteUrls[1], "mp4", 1) == "http://localhost:9999/video1=-\$param1\$-\$param2\$.mp4")
     }
 }

@@ -33,11 +33,6 @@ class SimpleManifestLocalizer
         val manifest : DashManifest = parser.parseManifest(uri, ByteArrayInputStream(byteArray))
         val map: Map<String, String> = mapper.map(manifest)
         val xml = streamToString(ByteArrayInputStream(byteArray))
-        for (url in map) {
-            val a = getLast(url.value, "/")
-            val b = getLast(url.key, "/")
-            xml.replace(getLast(url.value, "/"), getLast(url.key, "/"))
-        }
         println()
     }
 

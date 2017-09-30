@@ -15,7 +15,6 @@ import reddit.com.dashcache.injection.component.DaggerConfigPersistentComponent
 import reddit.com.dashcache.injection.module.ActivityModule
 import reddit.com.dashcache.injection.module.ApiModule
 import reddit.com.mdpparser.core.external.SimpleManifestLocalizer
-import reddit.com.mdpparser.injection.DaggerWrapper
 import retrofit2.Response
 import java.util.concurrent.atomic.AtomicLong
 import javax.inject.Inject

@@ -89,12 +89,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
-    compile ("com.squareup.retrofit2:converter-simplexml:$RETROFIT_VERSION") {
-        exclude module: 'stax-api'
-        exclude group: 'xpp3', module: 'xpp3'
-        exclude group: 'stax', module: 'stax-api'
-        exclude group: 'stax', module: 'stax'
-    }
+
 
     compile "com.google.android.exoplayer:exoplayer:$exoplayer_version"
     compile "com.google.android.exoplayer:extension-okhttp:$exoplayer_version"
@@ -110,7 +105,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxkotlin:1.0.0'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
 
     compile project(':mdpparser')
 }
@@ -118,4 +112,8 @@ dependencies {
 // Log out test results to console
 tasks.matching { it instanceof Test }.all {
     testLogging.events = ["failed", "passed", "skipped"]
+}
+
+kapt {
+    generateStubs = true
 }
