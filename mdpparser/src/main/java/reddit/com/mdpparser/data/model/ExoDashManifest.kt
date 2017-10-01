@@ -6,7 +6,7 @@ import com.google.android.exoplayer2.source.dash.manifest.AdaptationSet as ExoAd
 import com.google.android.exoplayer2.source.dash.manifest.Representation as ExoRepresentation1
 import com.google.android.exoplayer2.Format as ExoFormat1
 
-class ExoDashManifest(private val exoDashManifest: ExoManifest1) : SimpleManifest() {
+class ExoDashManifest(val exoDashManifest: ExoManifest1) : SimpleManifest() {
 
     override var periodCount: Int = 0
         get() = exoDashManifest.periodCount

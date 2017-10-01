@@ -20,6 +20,8 @@ class SimpleManifestLocalizer
 ): MPDLocalizer {
 
     companion object {
+        val BASE_URL_OPEN = "<BaseURL>"
+        val BASE_URL_CLOSE = "</BaseURL>"
         fun getSimpleExoManifestLocalizer(): SimpleManifestLocalizer =
                 SimpleManifestLocalizer(ExoPlayerManifestParser(), LocalUrlMPDMapper())
     }
@@ -32,7 +34,11 @@ class SimpleManifestLocalizer
         val byteArray = createByteArray(inputStream)
         val manifest : DashManifest = parser.parseManifest(uri, ByteArrayInputStream(byteArray))
         val map: Map<String, String> = mapper.map(manifest)
-        val xml = streamToString(ByteArrayInputStream(byteArray))
+        var xml = streamToString(ByteArrayInputStream(byteArray))
+        for (url in map) {
+            xml = xml.replaceFirst("$BASE_URL_OPEN${getLast(url.key, "/")}$BASE_URL_CLOSE", "$BASE_URL_OPEN${getLast(url.value, "/")}$BASE_URL_CLOSE")
+        }
+
         println()
     }
 

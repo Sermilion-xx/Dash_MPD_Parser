@@ -18,7 +18,7 @@ class LocalUrlMPDMapper: MPDMapper {
 
     override fun map(dashManifest: DashManifest): MutableMap<String, String> {
         var localInc = 0
-        val localToRemoteMap = mutableMapOf<String, String>()
+        val remoteToLocalMap = mutableMapOf<String, String>()
 
         (0 until dashManifest.periodCount)
                 .map { dashManifest.getPeriod(it).adaptationSets }
@@ -28,12 +28,12 @@ class LocalUrlMPDMapper: MPDMapper {
                             run {
                                 val formatArray = rep.format.containerMimeType.split(Regex("/"))
                                 val format = if (formatArray.size == 2) formatArray[1] else ""
-                                localToRemoteMap[createLocalUrl(rep.baseUrl, format, localInc++)] = rep.baseUrl
+                                remoteToLocalMap[rep.baseUrl] = createLocalUrl(rep.baseUrl, format, localInc++)
                             }
                         }
                     }
                 }
-        return localToRemoteMap
+        return remoteToLocalMap
     }
 
     fun createLocalUrl(url: String, format: String, increment: Int): String {
