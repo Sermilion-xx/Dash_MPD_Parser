@@ -21,7 +21,7 @@ class LocalUrlMPDMapper: MPDMapper {
         val remoteToLocalMap = mutableMapOf<String, String>()
 
         (0 until dashManifest.periodCount)
-                .map { dashManifest.getPeriod(it).adaptationSets }
+                .map { dashManifest.getPeriod(it)?.adaptationSets }
                 .forEach {
                     it?.forEach { set ->
                         set.representations?.forEach { rep ->

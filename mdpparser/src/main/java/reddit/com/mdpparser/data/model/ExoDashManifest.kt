@@ -6,7 +6,15 @@ import com.google.android.exoplayer2.source.dash.manifest.AdaptationSet as ExoAd
 import com.google.android.exoplayer2.source.dash.manifest.Representation as ExoRepresentation1
 import com.google.android.exoplayer2.Format as ExoFormat1
 
-class ExoDashManifest(val exoDashManifest: ExoManifest1) : SimpleManifest() {
+class ExoDashManifest(private val exoDashManifest: ExoManifest1) : DashManifest {
+
+    override fun getMinBufferTime() =
+        exoDashManifest.minBufferTime
+
+
+    override fun getProfiles() = ""
+
+    override fun getXmlns() = ""
 
     override var periodCount: Int = 0
         get() = exoDashManifest.periodCount

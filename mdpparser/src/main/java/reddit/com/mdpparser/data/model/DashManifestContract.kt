@@ -7,18 +7,18 @@ interface DashManifest {
 
     val periodCount: Int
 
-    fun getPeriod(index: Int): Period
+    fun getPeriod(index: Int): Period?
 
-    fun getMinBufferTime(): String
+    fun getMinBufferTime(): Long
 
-    fun getProfiles(): String
+    fun getProfiles(): String?
 
-    fun getXmlns(): String
+    fun getXmlns(): String?
 }
 
 interface Period {
 
-    val adaptationSets: List<AdaptationSet>?
+    var adaptationSets: List<AdaptationSet>?
 
     fun getDuration(): String
 }

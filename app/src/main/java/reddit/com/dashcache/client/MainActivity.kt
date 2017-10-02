@@ -14,7 +14,7 @@ import reddit.com.dashcache.injection.component.ConfigPersistentComponent
 import reddit.com.dashcache.injection.component.DaggerConfigPersistentComponent
 import reddit.com.dashcache.injection.module.ActivityModule
 import reddit.com.dashcache.injection.module.ApiModule
-import reddit.com.mdpparser.core.external.SimpleManifestLocalizer
+import reddit.com.mdpparser.core.external.ExoManifestLocalizer
 import retrofit2.Response
 import java.util.concurrent.atomic.AtomicLong
 import javax.inject.Inject
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private var activityId: Long = 0
     private lateinit var activityComponent: ActivityComponent
 
-    private lateinit var simpleManifestLocalizer: SimpleManifestLocalizer
+    private lateinit var exoManifestLocalizer: ExoManifestLocalizer
 
     @Inject lateinit var dataManager: DataManager
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         initDI(savedInstanceState)
         activityComponent.inject(this)
-        simpleManifestLocalizer = SimpleManifestLocalizer.getSimpleExoManifestLocalizer()
+        exoManifestLocalizer = ExoManifestLocalizer.getSimpleExoManifestLocalizer()
         dataManager.getManifest(address).subscribe(object : Observer<Response<ResponseBody>> {
 
             override fun onComplete() {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onNext(value: Response<ResponseBody>) {
-                simpleManifestLocalizer.localize(Uri.parse(ApiModule.BASE_URL + address + ".mdp"), value.body().byteStream())
+                exoManifestLocalizer.localize(Uri.parse(ApiModule.BASE_URL + address + ".mdp"), value.body().byteStream())
             }
         })
 

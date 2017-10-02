@@ -1,8 +1,5 @@
 package reddit.com.mdpparser.data.model;
 
-import android.support.annotation.NonNull;
-
-import org.jetbrains.annotations.NotNull;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -19,7 +16,7 @@ public class SimpleManifest implements DashManifest {
     private final String mediaPresentationDuration;
 
     @Attribute(required = false)
-    private final String minBufferTime;
+    private final long minBufferTime;
 
     @Attribute(required = false)
     private final String profiles;
@@ -34,7 +31,7 @@ public class SimpleManifest implements DashManifest {
     private final List<Period> periods;
 
     public SimpleManifest(String mediaPresentationDuration,
-                          String minBufferTime,
+                          long minBufferTime,
                           String profiles,
                           String type,
                           String xmlns,
@@ -49,7 +46,7 @@ public class SimpleManifest implements DashManifest {
 
     public SimpleManifest() {
         this.mediaPresentationDuration = null;
-        this.minBufferTime = null;
+        this.minBufferTime = 0L;
         this.profiles = null;
         this.type = null;
         this.xmlns = null;
@@ -58,28 +55,29 @@ public class SimpleManifest implements DashManifest {
 
     @Override
     public  int getPeriodCount() {
-        return periods.size();
+        return periods == null ? 0 : periods.size();
     }
 
-    @NotNull
     @Override
     public Period getPeriod(int index) {
-        return periods.get(index);
+        if (periods != null) {
+            return periods.get(index);
+        } else {
+            return null;
+        }
     }
 
-    @NonNull
     @Override
-    public String getMinBufferTime() {
+    public long getMinBufferTime() {
         return minBufferTime;
     }
 
-    @NotNull
+
     @Override
     public String getProfiles() {
         return profiles;
     }
 
-    @NotNull
     @Override
     public String getXmlns() {
         return xmlns;

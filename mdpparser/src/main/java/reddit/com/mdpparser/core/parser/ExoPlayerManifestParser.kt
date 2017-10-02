@@ -8,6 +8,6 @@ import java.io.InputStream
 
 
 class ExoPlayerManifestParser : DashManifestParser(), MPDParser {
-    override fun parseManifest(url: Uri, inputStream: InputStream): DashManifest =
+    override fun parseManifest(url: Uri, inputStream: InputStream): ExoDashManifest =
             ExoDashManifest(parse(url, inputStream))
 }

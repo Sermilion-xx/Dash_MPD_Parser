@@ -15,7 +15,7 @@ public class SimplePeriod implements Period {
     private final String duration;
 
     @ElementList(name = "AdaptationSet", inline = true, required = false)
-    private final List<AdaptationSet> adaptationSet;
+    private List<AdaptationSet> adaptationSet;
 
     public SimplePeriod(String duration, List<AdaptationSet> adaptationSet) {
         this.duration = duration;
@@ -31,6 +31,11 @@ public class SimplePeriod implements Period {
     @Override
     public List<AdaptationSet> getAdaptationSets() {
         return adaptationSet;
+    }
+
+    @Override
+    public void setAdaptationSets(List<? extends AdaptationSet> list) {
+        this.adaptationSet = (List<AdaptationSet>) list;
     }
 
     @NotNull
