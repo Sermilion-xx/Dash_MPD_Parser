@@ -3,8 +3,8 @@ package reddit.com.mdpparser.core.external
 import android.net.Uri
 import reddit.com.mdpparser.core.mapper.LocalUrlMPDMapper
 import reddit.com.mdpparser.core.parser.ExoPlayerManifestParser
+import reddit.com.mdpparser.core.parser.MPDParser
 import reddit.com.mdpparser.data.model.DashManifest
-import reddit.com.mdpparser.data.model.ExoDashManifest
 import reddit.com.mdpparser.injection.DaggerWrapper
 import reddit.com.mdpparser.util.UtilIO.createByteArray
 import reddit.com.mdpparser.util.UtilIO.streamToString
@@ -14,23 +14,24 @@ import java.io.InputStream
 import java.nio.charset.Charset
 import javax.inject.Inject
 
-class ExoManifestLocalizer
-@Inject constructor(private val parser: ExoPlayerManifestParser,
+class ManifestLocalizer
+@Inject constructor(private val parser: MPDParser,
                     private val mapper: LocalUrlMPDMapper
 ): MPDLocalizer {
 
     companion object {
         val BASE_URL_OPEN = "<BaseURL>"
         val BASE_URL_CLOSE = "</BaseURL>"
-        fun getSimpleExoManifestLocalizer(): ExoManifestLocalizer =
-                ExoManifestLocalizer(ExoPlayerManifestParser(), LocalUrlMPDMapper())
+        fun getSimpleExoManifestLocalizer(): ManifestLocalizer =
+                ManifestLocalizer(ExoPlayerManifestParser(), LocalUrlMPDMapper())
+
     }
 
     init {
         DaggerWrapper.getComponent().inject(this)
     }
 
-    override fun localize(uri: Uri, inputStream: InputStream): ExoDashManifest {
+    override fun localize(uri: Uri, inputStream: InputStream): DashManifest {
         val byteArray = createByteArray(inputStream)
         val manifest: DashManifest = parser.parseManifest(uri, ByteArrayInputStream(byteArray))
         val map: Map<String, String> = mapper.map(manifest)

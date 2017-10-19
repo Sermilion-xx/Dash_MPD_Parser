@@ -1,7 +1,5 @@
 package reddit.com.mdpparser.data.model
 
-import org.simpleframework.xml.Attribute
-
 
 interface DashManifest {
 
